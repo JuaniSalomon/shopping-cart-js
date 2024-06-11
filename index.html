@@ -1,20 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- LINKS BOOTSTRAP CSS -->
+    <!-- LINK BOOTSTRAP CSS -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
+
+    <!-- LINK BOOTSTRAP JS -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
+      defer
     ></script>
 
     <!-- LINK BOOTSTRAP ICONS -->
@@ -26,6 +29,58 @@
     <title>Shopping cart</title>
   </head>
   <body>
+    <!-- navbar init -->
+    <nav class="navbar navbar-expand-lg bg-warning">
+      <div class="container-fluid">
+        <div class="d-flex">
+          <a class="navbar-brand text-dark" href="#">Shopping Cart</a>
+          <form class="d-sm-flex d-none" role="search">
+            <input
+              class="form-control me-2 bg-dark"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+            <button class="btn btn-dark" type="submit">Search</button>
+          </form>
+        </div>
+
+        <button
+          class="btn btn-dark"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasNavbar"
+          aria-controls="offcanvasNavbar"
+          aria-label="Toggle navigation"
+        >
+          <i class="bi bi-cart"></i>
+        </button>
+      </div>
+    </nav>
+    <!-- navbar end -->
+
+    <!-- offcanvas init  -->
+    <div
+      class="offcanvas offcanvas-end"
+      tabindex="-1"
+      id="offcanvasNavbar"
+      aria-labelledby="offcanvasNavbarLabel"
+    >
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Cart</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="offcanvas-body">
+        <!-- TODO: add cart items -->
+      </div>
+    </div>
+    <!-- offcanvas end -->
+
     <!-- LINK JavaScript -->
     <link rel="stylesheet" href="js/script.js" />
   </body>
