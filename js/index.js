@@ -21,6 +21,27 @@ const products = [
     price: 700,
     imageSrc: "./assets/images/cerveza-quilmes-lata.jpg",
   },
+
+  {
+    id: 4,
+    title: "Cerveza Stella rubia lata",
+    price: 700,
+    imageSrc: "./assets/images/cerveza-quilmes-lata.jpg",
+  },
+
+  {
+    id: 5,
+    title: "Cerveza Stella rubia lata",
+    price: 700,
+    imageSrc: "./assets/images/cerveza-quilmes-lata.jpg",
+  },
+
+  {
+    id: 6,
+    title: "Cerveza Stella rubia lata",
+    price: 700,
+    imageSrc: "./assets/images/cerveza-quilmes-lata.jpg",
+  },
 ];
 
 const productsInstance = new Products(products);
