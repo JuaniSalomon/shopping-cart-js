@@ -1,4 +1,5 @@
 import Products from "./products/products.js";
+import Cart from "./products/cart.js";
 
 const products = [
   {
@@ -47,4 +48,7 @@ const products = [
 document.addEventListener("DOMContentLoaded", () => {
   const productsInstance = new Products(products);
   productsInstance.renderProducts();
+
+  const cartInstance = new Cart();
+  cartInstance.updateCart();
 });

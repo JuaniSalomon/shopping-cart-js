@@ -1,7 +1,8 @@
+import Cart from "./cart.js";
+
 class Products {
   constructor(products) {
     this.products = products;
-    this.cart = [];
   }
 
   increaseProductQuantity(id) {
@@ -51,70 +52,26 @@ class Products {
 
   // Add product to cart
   addToCart(id) {
-    const product = this.products.find((product) => product.id === id); // se busca en this.product el mismo id
+    const product = this.products.find((product) => product.id === id);
     const quantityElement = document.getElementById(`quantity-${id}`);
-    const quantity = Number(quantityElement.textContent); // se obtiene el valor numero del contador
+    const quantity = Number(quantityElement.textContent);
 
     if (quantity > 0) {
-      const cartItem = this.cart.find((item) => item.id === id); // se busca si existe un elemento con el mismo id
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const cartItemIndex = cart.findIndex((item) => item.id === id);
 
-      if (cartItem) {
-        cartItem.quantity += quantity; // si esta en el carrito se suma cantidad
+      if (cartItemIndex !== -1) {
+        cart[cartItemIndex].quantity += quantity;
       } else {
-        this.cart.push({ ...product, quantity });
+        cart.push({ ...product, quantity });
       }
 
-      quantityElement.textContent = 0; // resetea la cantidad del producto a 0
-      this.updateCart();
+      localStorage.setItem("cart", JSON.stringify(cart));
+      quantityElement.textContent = 0;
+
+      const cartInstance = new Cart();
+      cartInstance.updateCart();
     }
-  }
-
-  updateCart() {
-    const cartContainer = document.querySelector(".offcanvas-body");
-
-    // total price calculation
-    const totalAmount = this.cart.reduce((total, item) => {
-      return total + item.price * item.quantity;
-    }, 0);
-
-    const cartItemsHTML = this.cart
-      .map(
-        (item) => `
-      <div class="cart-item">
-        <h5>${item.title}</h5>
-        <p>$${item.quantity} x ${item.price} = $${
-          item.price * item.quantity
-        }</p>
-      </div>
-      `
-      )
-      .join("");
-
-    cartContainer.innerHTML = cartItemsHTML;
-
-    // total price div
-    cartContainer.insertAdjacentHTML(
-      "beforeend",
-      `<div class="cart-total">Total: $${totalAmount}</div>`
-    );
-
-    // "comprar" button
-    if (this.cart.length > 0) {
-      cartContainer.insertAdjacentHTML(
-        "beforeend",
-        `<button id="checkout-btn" class="btn btn-primary w-100 mt-3">Comprar</button>`
-      );
-
-      const checkoutBtn = document.getElementById("checkout-btn");
-      checkoutBtn.addEventListener("click", () => {
-        this.checkout();
-      });
-    }
-  }
-
-  checkout() {
-    this.cart = [];
-    this.updateCart();
   }
 
   renderProducts() {
