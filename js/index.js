@@ -44,6 +44,7 @@ const products = [
   },
 ];
 
-const productsInstance = new Products(products);
-
-productsInstance.renderProducts();
+document.addEventListener("DOMContentLoaded", () => {
+  const productsInstance = new Products(products);
+  productsInstance.renderProducts();
+});
