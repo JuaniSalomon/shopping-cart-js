@@ -59,9 +59,19 @@ class Cart {
   }
 
   checkout() {
-    this.cart = [];
-    localStorage.removeItem("cart");
-    this.updateCart();
+    Swal.fire({
+      title: "Gracias por su compra!",
+      text: "Su pedido ha sido procesado exitosamente.",
+      icon: "success",
+      confirmButtonText: "Cerrar",
+      customClass: {
+        confirmButton: "btn-confirm",
+      },
+    }).then(() => {
+      this.cart = [];
+      localStorage.removeItem("cart");
+      this.updateCart();
+    });
   }
 }
 

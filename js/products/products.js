@@ -21,6 +21,7 @@ class Products {
         price: product.price,
         imageSrc: product.thumbnail,
       }));
+      this.products = [...this.products];
     } catch (error) {
       console.error("Error fetching products:", error);
     }
@@ -53,12 +54,12 @@ class Products {
         <div class="card shadow">
           <img
             src="${imageSrc}"
-            class="card-img-top img-fluid"
+            class="card-img-top"
             alt="${title}"
           />
           <div class="card-body">
             <h5 class="card-title">${title}</h5>
-            <p class="mb-2 fw-bold fs-5 d-inline-flex">${this.formatPrice(
+            <p class="mb-2 fw-bold fs-5 d-inline-flex">$ ${this.formatPrice(
               price
             )}</p>
             <div class="d-flex align-items-center gap-2 mb-2">
@@ -106,6 +107,8 @@ class Products {
 
   renderProducts() {
     const productsContainer = document.getElementById("products-container");
+    productsContainer.innerHTML = "";
+
     this.products.forEach((product) => {
       productsContainer.insertAdjacentHTML(
         "beforeend",

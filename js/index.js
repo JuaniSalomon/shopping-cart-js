@@ -1,6 +1,6 @@
 import Products from "./products/products.js";
 import Cart from "./cart/cart.js";
-import SearchBar from "./searchbar.js";
+import SearchBar from "./searchbar/searchbar.js";
 
 const productsInstance = new Products();
 await productsInstance.fetchProducts();
