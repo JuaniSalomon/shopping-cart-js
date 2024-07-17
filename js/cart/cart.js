@@ -3,6 +3,13 @@ class Cart {
     this.cart = JSON.parse(localStorage.getItem("cart")) || [];
   }
 
+  formatPrice(price) {
+    return price.toLocaleString("es-AR", {
+      style: "currency",
+      currency: "ARS",
+    });
+  }
+
   updateCart() {
     const cartContainer = document.querySelector(".offcanvas-body");
     cartContainer.innerHTML = ""; // Limpiar el contenido actual del carrito
@@ -17,11 +24,11 @@ class Cart {
     const cartItemsHTML = cart
       .map(
         (item) => `
-      <div class="cart-item">
+      <div class="cart-item border-bottom border-3 my-3 fs-5">
         <h5>${item.title}</h5>
-        <p>$${item.quantity} x ${item.price} = $${
-          item.price * item.quantity
-        }</p>
+        <p>${item.quantity} U x ${this.formatPrice(
+          item.price
+        )} = ${this.formatPrice(item.price * item.quantity)}</p>
       </div>
       `
       )
@@ -32,14 +39,16 @@ class Cart {
     // total price div
     cartContainer.insertAdjacentHTML(
       "beforeend",
-      `<div class="cart-total">Total: $${totalAmount}</div>`
+      `<div class="cart-total fs-3">Total: ${this.formatPrice(
+        totalAmount
+      )}</div>`
     );
 
     // "comprar" button
     if (cart.length > 0) {
       cartContainer.insertAdjacentHTML(
         "beforeend",
-        `<button id="checkout-btn" class="btn btn-primary w-100 mt-3">Comprar</button>`
+        `<button id="checkout-btn" class="btn btn-warning w-100 mt-3 position-absolute bottom-0 start-50 translate-middle-x mb-3"><i class="bi bi-cart-fill me-2"></i>Comprar</button>`
       );
 
       const checkoutBtn = document.getElementById("checkout-btn");

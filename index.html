@@ -30,18 +30,19 @@
   </head>
   <body>
     <!-- navbar init -->
-    <nav class="navbar navbar-expand-lg bg-warning">
+    <nav class="navbar navbar-expand-lg bg-warning sticky-top">
       <div class="container-fluid">
         <div class="d-flex">
           <a class="navbar-brand text-dark" href="#">Shopping Cart</a>
-          <form class="d-sm-flex d-none" role="search">
+          <form id="search-form" class="d-sm-flex d-none" role="search">
             <input
+              id="search-input"
               class="form-control me-2 bg-dark"
               type="search"
-              placeholder="Search"
+              placeholder="Buscar productos..."
               aria-label="Search"
             />
-            <button class="btn btn-dark" type="submit">Search</button>
+            <button class="btn btn-dark" type="submit">Buscar</button>
           </form>
         </div>
 
@@ -77,16 +78,20 @@
       id="offcanvasNavbar"
       aria-labelledby="offcanvasNavbarLabel"
     >
-      <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Cart</h5>
+      <div
+        class="offcanvas-header bg-dark text-white d-flex justify-content-between align-items-center"
+      >
+        <h5 class="offcanvas-title fs-3" id="offcanvasNavbarLabel">
+          Mi carrito:
+        </h5>
         <button
           type="button"
-          class="btn-close"
+          class="btn-close btn-close-white"
           data-bs-dismiss="offcanvas"
           aria-label="Close"
         ></button>
       </div>
-      <div class="offcanvas-body">
+      <div class="offcanvas-body position-relative">
         <!-- TODO: add cart items -->
       </div>
     </div>
